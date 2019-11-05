@@ -1,0 +1,206 @@
+
+<!doctype html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> My Routine-Pranta Mazumder</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta description ="Pranta Mazumder personal routine according to digital watch  Show day month year">
+
+<meta keywords="daily work shedule, pranta mazumder">
+<style>
+* {box-sizing:border-box;}
+
+body{margin: 0 auto;}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #3399ff;
+  padding: 5px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 22px;
+  color: #fff;
+  text-shadow: 1px 1.5px green;
+}
+p{font-size: 20px;}
+tr:hover {background-color:#ff66ff;}
+h2, p{text-align:center;}
+.heading {background-color:#0099ff;color: #fff;text-shadow: 1px 1.5px gray; padding:2px;box-shadow: 5px 5px lightblue;}
+
+.footer{background-color:#0099ff;color: #fff;text-shadow: 1px 1.5px gray; padding:2px;box-shadow: 5px 5px lightblue;}
+h2{font-size: 28px;}
+
+.ml2 {
+  font-weight: 900;
+  color: yellow;
+}
+
+.ml2 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.ml6 {
+  position: relative;
+  font-weight: 900;
+  font-size: 1.6em;
+  color:yellow;
+}
+
+.ml6 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml6 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+
+
+</style>
+
+</head>
+<body onload= display_ct();>
+
+<div class = "heading">
+<h2 class="ml2"> Daily Works Shedule </h2>
+<p>Pranta Mazumder- Promised to follow this routine strictly<br>pranta.maz01@gmail.com
+</p>
+</div>
+
+
+<div>
+<table>
+<tr>
+<th>Clock (Current time, date, year)</th>
+<th>Work (What I can do for my goal)</th>
+
+</tr>
+<tr>
+<td><span id='ct' ></span></td>
+
+<td class="ml6">
+<span class="text-wrapper">
+    <span class="letters" id ="workid"></span>
+  </span>
+
+</td>
+</tr>
+</table>
+</div>
+<div class= "footer">
+<p> Developed by Pranta Mazumder</p>
+</div>
+
+
+<script>
+
+var workvar = [ "Study for Academic, GRE, IELTS, TOEFL", 
+"Study For BCS and Others Govt. Job", 
+"Exercise For Muscles and Healthy Life", 
+"Study For Academic, BCS and GRE", 
+"Programming Practice Or Clients Work", "Sleeping"]; 
+
+function display_c(){
+var refresh=1000; // Refresh rate in milli seconds
+mytime=setTimeout('display_ct()',refresh)
+}
+
+function display_ct() {
+var x = new Date()
+document.getElementById('ct').innerHTML = x;
+display_c();
+ }
+
+
+
+var d = new Date();
+var time = d.getHours();
+
+
+if(time < 10){
+
+document.getElementById("workid").innerHTML = workvar[0];
+
+} else if (time < 13){
+
+document.getElementById("workid").innerHTML = workvar[1];
+
+} else if (time < 15){
+
+document.getElementById("workid").innerHTML = workvar[2];
+} else if (time < 21){
+
+document.getElementById("workid").innerHTML = workvar[3];
+} else if (time < 24){
+
+document.getElementById("workid").innerHTML = workvar[4];
+}else if (time == 24){
+
+document.getElementById("workid").innerHTML = workvar[5];
+};
+
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+<script>
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml2');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml2 .letter',
+    scale: [4,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 950,
+    delay: (el, i) => 70*i
+  }).add({
+    targets: '.ml2',
+    opacity: 0,
+    duration: 500,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+
+</script>
+
+<script>
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml6 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml6 .letter',
+    translateY: ["1.1em", 0],
+    translateZ: 0,
+    duration: 750,
+    delay: (el, i) => 50 * i
+  }).add({
+    targets: '.ml6',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+
+</script>
+
+</body>
+</html>
